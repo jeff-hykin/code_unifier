@@ -3,9 +3,10 @@ import { Parser, parserFromWasm } from "https://deno.land/x/deno_tree_sitter@0.1
 import python from "https://deno.land/x/common_tree_sitter_languages@1.0.0.3/main/python.js"
 
 export const parser = await parserFromWasm(python)
+export const defaultParser = parser
 
 const langName = "python"
-export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerator=(id)=>`var_${id}`, debugging=false })=> {
+export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerator=(id)=>`var_${id}`, debugging=false, parser=defaultParser })=> {
     const stack = new StackManager({
         defaultInfoCreator: ()=>({
             varCount: 0,
@@ -38,7 +39,7 @@ export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerat
     for (const [ parents, node, direction ] of tree.rootNode.traverse()) {
         if (node.type == "ERROR" && !showedWarning) {
             showedWarning = true
-            console.warn(`When calling autoRenameVars({ code: ${JSON.stringify(code.slice(0,18)+" ... "+code.trim().slice(-18,))}, })\n    There was a parsing issue\n     Please make sure the code is valid ${langName} code\n\n`)
+            console.warn(`\n\nWhen calling autoRenameVars({ code: ${JSON.stringify(code.trim().slice(0,18))+" ... "+JSON.stringify(code.trim().slice(-18,))}, })\n    There was a parsing issue\n    Please make sure the code is valid ${langName} code\n\n`)
         }
         if (parents.length == 0) {
             continue

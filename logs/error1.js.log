@@ -1,0 +1,7 @@
+
+
+When calling autoRenameVars({ code: "a = 10\nb = 99\nc = " ... "ner()\n    return d", })
+    There was a parsing issue
+    Please make sure the code is valid python code
+
+
