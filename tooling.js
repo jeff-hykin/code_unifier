@@ -1,7 +1,7 @@
 export class StackManager {
     constructor({defaultInfoCreator=(_=>({}))}) {
         this.defaultInfoCreator = defaultInfoCreator.bind(this)
-        this._nextStackDepth = [1]
+        this._nextStackDepth = [0]
         this.stackAt = {}
         this.info = this.defaultInfoCreator()
     }
@@ -43,7 +43,7 @@ export class StackManager {
     
     addDepth() {
         this._nextStackDepth.push(this._nextStackDepth.pop()+1)
-        this._nextStackDepth.push(1)
+        this._nextStackDepth.push(0)
         this.info = this.defaultInfoCreator()
     }
 
@@ -54,6 +54,7 @@ export class StackManager {
 
 export const parseTreeAsHtmlLikeString = (tree) => {
     const outputs = []
+    let indent = ""
     for (const [ parents, node, direction ] of tree.rootNode.traverse()) {
         const isLeafNode = direction == "-"
         if (isLeafNode) {
@@ -67,4 +68,22 @@ export const parseTreeAsHtmlLikeString = (tree) => {
         }
     }
     return outputs.join("\n")
+}
+
+export const replaceSequence = ({code, selections, replacer})=>{
+    let prevIndex = 0
+    const stringChunks = []
+    let index = 0
+    for (const [eachStart, eachLength, ...otherArgs] of selections) {
+        stringChunks.push(code.slice(prevIndex, eachStart))
+        if (replacer instanceof Array) {
+            stringChunks.push(replacer.shift())
+        } else {
+            stringChunks.push(replacer(...otherArgs, index))
+        }
+        prevIndex = eachStart+eachLength
+        index += 1
+    }
+    stringChunks.push(code.slice(prevIndex,))
+    return stringChunks.join("")
 }
