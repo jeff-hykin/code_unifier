@@ -5,7 +5,7 @@ A tool written using Deno for helping with the variable renaming step of [code u
 
 
 ```js
-import { autoRenameVars } from "https://raw.githubusercontent.com/jeff-hykin/code_unifier/d9024de5dbed396e970eb1dbbfa71e147fb0774d/languages/python.js"
+import { autoRenameVars } from "https://raw.githubusercontent.com/jeff-hykin/code_unifier/f1d81d95f027b83eee0d00d6e4d4da7efb09b100/languages/python.js"
 
 const somePythonCode = `
 a = 10
