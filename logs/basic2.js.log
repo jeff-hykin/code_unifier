@@ -1,0 +1,728 @@
+<module>
+    <import_statement>
+        <import text="import" />
+        <dotted_name>
+            <identifier text="ez_yaml" />
+        </dotted_name>
+    </import_statement>
+    <import_from_statement>
+        <from text="from" />
+        <dotted_name>
+            <identifier text="sklearn" />
+            <. text="." />
+            <identifier text="metrics" />
+        </dotted_name>
+        <import text="import" />
+        <dotted_name>
+            <identifier text="make_scorer" />
+        </dotted_name>
+    </import_from_statement>
+    <expression_statement>
+        <assignment>
+            <identifier text="equal_accuracy_scorer" />
+            <= text="=" />
+            <call>
+                <identifier text="make_scorer" />
+                <argument_list>
+                    <( text="(" />
+                    <identifier text="equal_accuracy" />
+                    <, text="," />
+                    <keyword_argument>
+                        <identifier text="greater_is_better" />
+                        <= text="=" />
+                        <true text="True" />
+                    </keyword_argument>
+                    <) text=")" />
+                </argument_list>
+            </call>
+        </assignment>
+    </expression_statement>
+    <class_definition>
+        <class text="class" />
+        <identifier text="Hi" />
+        <: text=":" />
+        <block>
+            <expression_statement>
+                <assignment>
+                    <identifier text="thing" />
+                    <= text="=" />
+                    <integer text="10" />
+                </assignment>
+            </expression_statement>
+            <function_definition>
+                <def text="def" />
+                <identifier text="__init__" />
+                <parameters>
+                    <( text="(" />
+                    <identifier text="self" />
+                    <, text="," />
+                    <identifier text="thing" />
+                    <) text=")" />
+                </parameters>
+                <: text=":" />
+                <block>
+                    <expression_statement>
+                        <assignment>
+                            <identifier text="thing" />
+                            <= text="=" />
+                            <list_comprehension>
+                                <[ text="[" />
+                                <integer text="10" />
+                                <for_in_clause>
+                                    <for text="for" />
+                                    <identifier text="each" />
+                                    <in text="in" />
+                                    <tuple>
+                                        <( text="(" />
+                                        <integer text="1" />
+                                        <, text="," />
+                                        <integer text="2" />
+                                        <, text="," />
+                                        <integer text="3" />
+                                        <) text=")" />
+                                    </tuple>
+                                </for_in_clause>
+                                <] text="]" />
+                            </list_comprehension>
+                        </assignment>
+                    </expression_statement>
+                </block>
+            </function_definition>
+        </block>
+    </class_definition>
+    <function_definition>
+        <def text="def" />
+        <identifier text="save_with_snippet" />
+        <parameters>
+            <( text="(" />
+            <identifier text="df" />
+            <, text="," />
+            <identifier text="path" />
+            <, text="," />
+            <default_parameter>
+                <identifier text="limit" />
+                <= text="=" />
+                <integer text="200" />
+            </default_parameter>
+            <) text=")" />
+        </parameters>
+        <: text=":" />
+        <block>
+            <expression_statement>
+                <call>
+                    <attribute>
+                        <identifier text="df" />
+                        <. text="." />
+                        <identifier text="to_csv" />
+                    </attribute>
+                    <argument_list>
+                        <( text="(" />
+                        <identifier text="path" />
+                        <, text="," />
+                        <keyword_argument>
+                            <identifier text="sep" />
+                            <= text="=" />
+                            <string>
+                                <" text="\"" />
+                                <string_content>
+                                    <escape_sequence text="\\t" />
+                                </string_content>
+                                <" text="\"" />
+                            </string>
+                        </keyword_argument>
+                        <, text="," />
+                        <keyword_argument>
+                            <identifier text="encoding" />
+                            <= text="=" />
+                            <string>
+                                <" text="\"" />
+                                <string_content text="utf-8" />
+                                <" text="\"" />
+                            </string>
+                        </keyword_argument>
+                        <, text="," />
+                        <keyword_argument>
+                            <identifier text="index" />
+                            <= text="=" />
+                            <false text="False" />
+                        </keyword_argument>
+                        <) text=")" />
+                    </argument_list>
+                </call>
+            </expression_statement>
+            <try_statement>
+                <try text="try" />
+                <: text=":" />
+                <block>
+                    <expression_statement>
+                        <assignment>
+                            <identifier text="first_serveral_lines" />
+                            <= text="=" />
+                            <string>
+                                <" text="\"" />
+                                <" text="\"" />
+                            </string>
+                        </assignment>
+                    </expression_statement>
+                    <with_statement>
+                        <with text="with" />
+                        <with_clause>
+                            <with_item>
+                                <as_pattern>
+                                    <call>
+                                        <identifier text="open" />
+                                        <argument_list>
+                                            <( text="(" />
+                                            <identifier text="path" />
+                                            <, text="," />
+                                            <string>
+                                                <" text="\"" />
+                                                <string_content text="r" />
+                                                <" text="\"" />
+                                            </string>
+                                            <) text=")" />
+                                        </argument_list>
+                                    </call>
+                                    <as text="as" />
+                                    <as_pattern_target>
+                                        <identifier text="the_file" />
+                                    </as_pattern_target>
+                                </as_pattern>
+                            </with_item>
+                        </with_clause>
+                        <: text=":" />
+                        <block>
+                            <for_statement>
+                                <for text="for" />
+                                <pattern_list>
+                                    <identifier text="index" />
+                                    <, text="," />
+                                    <identifier text="line" />
+                                </pattern_list>
+                                <in text="in" />
+                                <call>
+                                    <identifier text="enumerate" />
+                                    <argument_list>
+                                        <( text="(" />
+                                        <identifier text="the_file" />
+                                        <) text=")" />
+                                    </argument_list>
+                                </call>
+                                <: text=":" />
+                                <block>
+                                    <expression_statement>
+                                        <augmented_assignment>
+                                            <identifier text="first_serveral_lines" />
+                                            <+= text="+=" />
+                                            <identifier text="line" />
+                                        </augmented_assignment>
+                                    </expression_statement>
+                                    <if_statement>
+                                        <if text="if" />
+                                        <comparison_operator>
+                                            <identifier text="index" />
+                                            <> text=">" />
+                                            <identifier text="limit" />
+                                        </comparison_operator>
+                                        <: text=":" />
+                                        <block>
+                                            <break_statement>
+                                                <break text="break" />
+                                            </break_statement>
+                                        </block>
+                                    </if_statement>
+                                </block>
+                            </for_statement>
+                        </block>
+                    </with_statement>
+                    <expression_statement>
+                        <assignment>
+                            <pattern_list>
+                                <list_splat_pattern>
+                                    <* text="*" />
+                                    <identifier text="folders" />
+                                </list_splat_pattern>
+                                <, text="," />
+                                <identifier text="name" />
+                                <, text="," />
+                                <identifier text="extension" />
+                            </pattern_list>
+                            <= text="=" />
+                            <call>
+                                <attribute>
+                                    <identifier text="FS" />
+                                    <. text="." />
+                                    <identifier text="path_pieces" />
+                                </attribute>
+                                <argument_list>
+                                    <( text="(" />
+                                    <identifier text="path" />
+                                    <) text=")" />
+                                </argument_list>
+                            </call>
+                        </assignment>
+                    </expression_statement>
+                    <with_statement>
+                        <with text="with" />
+                        <with_clause>
+                            <with_item>
+                                <as_pattern>
+                                    <call>
+                                        <identifier text="open" />
+                                        <argument_list>
+                                            <( text="(" />
+                                            <call>
+                                                <attribute>
+                                                    <identifier text="FS" />
+                                                    <. text="." />
+                                                    <identifier text="join" />
+                                                </attribute>
+                                                <argument_list>
+                                                    <( text="(" />
+                                                    <list_splat>
+                                                        <* text="*" />
+                                                        <identifier text="folders" />
+                                                    </list_splat>
+                                                    <, text="," />
+                                                    <binary_operator>
+                                                        <binary_operator>
+                                                            <identifier text="name" />
+                                                            <+ text="+" />
+                                                            <string>
+                                                                <" text="\"" />
+                                                                <string_content text=".snippet" />
+                                                                <" text="\"" />
+                                                            </string>
+                                                        </binary_operator>
+                                                        <+ text="+" />
+                                                        <identifier text="extension" />
+                                                    </binary_operator>
+                                                    <) text=")" />
+                                                </argument_list>
+                                            </call>
+                                            <, text="," />
+                                            <string>
+                                                <" text="\"" />
+                                                <string_content text="w" />
+                                                <" text="\"" />
+                                            </string>
+                                            <) text=")" />
+                                        </argument_list>
+                                    </call>
+                                    <as text="as" />
+                                    <as_pattern_target>
+                                        <identifier text="the_file" />
+                                    </as_pattern_target>
+                                </as_pattern>
+                            </with_item>
+                        </with_clause>
+                        <: text=":" />
+                        <block>
+                            <expression_statement>
+                                <call>
+                                    <attribute>
+                                        <identifier text="the_file" />
+                                        <. text="." />
+                                        <identifier text="write" />
+                                    </attribute>
+                                    <argument_list>
+                                        <( text="(" />
+                                        <identifier text="first_serveral_lines" />
+                                        <) text=")" />
+                                    </argument_list>
+                                </call>
+                            </expression_statement>
+                        </block>
+                    </with_statement>
+                </block>
+                <except_clause>
+                    <except text="except" />
+                    <as_pattern>
+                        <identifier text="Exception" />
+                        <as text="as" />
+                        <as_pattern_target>
+                            <identifier text="error" />
+                        </as_pattern_target>
+                    </as_pattern>
+                    <: text=":" />
+                    <block>
+                        <expression_statement>
+                            <call>
+                                <identifier text="print" />
+                                <argument_list>
+                                    <( text="(" />
+                                    <string>
+                                        <" text="f\"" />
+                                        <string_content text="error creating snippet: " />
+                                        <interpolation>
+                                            <{ text="{" />
+                                            <identifier text="error" />
+                                            <} text="}" />
+                                        </interpolation>
+                                        <" text="\"" />
+                                    </string>
+                                    <) text=")" />
+                                </argument_list>
+                            </call>
+                        </expression_statement>
+                    </block>
+                </except_clause>
+            </try_statement>
+        </block>
+    </function_definition>
+    <comment text="#" />
+    <comment text="# formatting of floats" />
+    <comment text="#" />
+    <import_from_statement>
+        <from text="from" />
+        <dotted_name>
+            <identifier text="slick_siphon" />
+        </dotted_name>
+        <import text="import" />
+        <dotted_name>
+            <identifier text="siphon" />
+        </dotted_name>
+    </import_from_statement>
+    <decorated_definition>
+        <decorator>
+            <@ text="@" />
+            <call>
+                <identifier text="siphon" />
+                <argument_list>
+                    <( text="(" />
+                    <keyword_argument>
+                        <identifier text="when" />
+                        <= text="=" />
+                        <lambda>
+                            <lambda text="lambda" />
+                            <lambda_parameters>
+                                <list_splat_pattern>
+                                    <* text="*" />
+                                    <identifier text="l_args" />
+                                </list_splat_pattern>
+                            </lambda_parameters>
+                            <: text=":" />
+                            <call>
+                                <identifier text="isinstance" />
+                                <argument_list>
+                                    <( text="(" />
+                                    <subscript>
+                                        <identifier text="l_args" />
+                                        <[ text="[" />
+                                        <integer text="0" />
+                                        <] text="]" />
+                                    </subscript>
+                                    <, text="," />
+                                    <identifier text="float" />
+                                    <) text=")" />
+                                </argument_list>
+                            </call>
+                        </lambda>
+                    </keyword_argument>
+                    <, text="," />
+                    <keyword_argument>
+                        <identifier text="is_true_for" />
+                        <= text="=" />
+                        <identifier text="stringify" />
+                    </keyword_argument>
+                    <) text=")" />
+                </argument_list>
+            </call>
+        </decorator>
+        <function_definition>
+            <def text="def" />
+            <identifier text="stringify" />
+            <parameters>
+                <( text="(" />
+                <list_splat_pattern>
+                    <* text="*" />
+                    <identifier text="args" />
+                </list_splat_pattern>
+                <) text=")" />
+            </parameters>
+            <: text=":" />
+            <block>
+                <global_statement>
+                    <global text="global" />
+                    <identifier text="some_var" />
+                </global_statement>
+                <expression_statement>
+                    <assignment>
+                        <identifier text="size" />
+                        <= text="=" />
+                        <integer text="0" />
+                    </assignment>
+                </expression_statement>
+                <expression_statement>
+                    <assignment>
+                        <identifier text="thing" />
+                        <= text="=" />
+                        <integer text="11" />
+                    </assignment>
+                </expression_statement>
+                <comment text="# smallest decimal possible without loosing accuracy" />
+                <while_statement>
+                    <while text="while" />
+                    <comparison_operator>
+                        <call>
+                            <identifier text="float" />
+                            <argument_list>
+                                <( text="(" />
+                                <call>
+                                    <identifier text="format" />
+                                    <argument_list>
+                                        <( text="(" />
+                                        <subscript>
+                                            <identifier text="args" />
+                                            <[ text="[" />
+                                            <integer text="0" />
+                                            <] text="]" />
+                                        </subscript>
+                                        <, text="," />
+                                        <string>
+                                            <" text="f\"" />
+                                            <string_content text="." />
+                                            <interpolation>
+                                                <{ text="{" />
+                                                <identifier text="size" />
+                                                <} text="}" />
+                                            </interpolation>
+                                            <string_content text="f" />
+                                            <" text="\"" />
+                                        </string>
+                                        <) text=")" />
+                                    </argument_list>
+                                </call>
+                                <) text=")" />
+                            </argument_list>
+                        </call>
+                        <!= text="!=" />
+                        <subscript>
+                            <identifier text="args" />
+                            <[ text="[" />
+                            <integer text="0" />
+                            <] text="]" />
+                        </subscript>
+                    </comparison_operator>
+                    <: text=":" />
+                    <block>
+                        <expression_statement>
+                            <augmented_assignment>
+                                <identifier text="size" />
+                                <+= text="+=" />
+                                <integer text="1" />
+                            </augmented_assignment>
+                        </expression_statement>
+                    </block>
+                </while_statement>
+                <expression_statement>
+                    <call>
+                        <identifier text="print" />
+                        <argument_list>
+                            <( text="(" />
+                            <string>
+                                <" text="\"" />
+                                <string_content text="hi" />
+                                <" text="\"" />
+                            </string>
+                            <) text=")" />
+                        </argument_list>
+                    </call>
+                </expression_statement>
+                <expression_statement>
+                    <assignment>
+                        <attribute>
+                            <identifier text="thing" />
+                            <. text="." />
+                            <identifier text="thingy" />
+                        </attribute>
+                        <= text="=" />
+                        <integer text="10" />
+                    </assignment>
+                </expression_statement>
+                <function_definition>
+                    <def text="def" />
+                    <identifier text="inner" />
+                    <parameters>
+                        <( text="(" />
+                        <) text=")" />
+                    </parameters>
+                    <: text=":" />
+                    <block>
+                        <nonlocal_statement>
+                            <nonlocal text="nonlocal" />
+                            <identifier text="size" />
+                        </nonlocal_statement>
+                        <return_statement>
+                            <return text="return" />
+                            <identifier text="size" />
+                        </return_statement>
+                    </block>
+                </function_definition>
+                <return_statement>
+                    <return text="return" />
+                    <call>
+                        <identifier text="format" />
+                        <argument_list>
+                            <( text="(" />
+                            <subscript>
+                                <identifier text="args" />
+                                <[ text="[" />
+                                <integer text="0" />
+                                <] text="]" />
+                            </subscript>
+                            <, text="," />
+                            <string>
+                                <" text="f\"" />
+                                <string_content text="." />
+                                <interpolation>
+                                    <{ text="{" />
+                                    <identifier text="size" />
+                                    <} text="}" />
+                                </interpolation>
+                                <string_content text="f" />
+                                <" text="\"" />
+                            </string>
+                            <) text=")" />
+                        </argument_list>
+                    </call>
+                </return_statement>
+            </block>
+        </function_definition>
+    </decorated_definition>
+    <comment text="# TODO: walrus" />
+</module>
+stack is: {
+  "[]": {
+    varCount: 4,
+    varInfo: {
+      equal_accuracy_scorer: { number: 1, selections: [Array], source: "[]" },
+      make_scorer: { selections: [Array], source: '["implicitGlobal"]' },
+      equal_accuracy: { selections: [Array], source: '["implicitGlobal"]' },
+      Hi: { number: 2, selections: [Array], source: "[]" },
+      thing: { number: 3, selections: [Array], source: "[]" },
+      save_with_snippet: { number: 4, selections: [Array], source: "[]" },
+      open: { selections: [Array], source: '["implicitGlobal"]' },
+      enumerate: { selections: [Array], source: '["implicitGlobal"]' },
+      FS: { selections: [Array], source: '["implicitGlobal"]' },
+      Exception: { selections: [Array], source: '["implicitGlobal"]' },
+      print: { selections: [Array], source: '["implicitGlobal"]' },
+      siphon: { selections: [Array], source: '["implicitGlobal"]' },
+      isinstance: { selections: [Array], source: '["implicitGlobal"]' },
+      float: { selections: [Array], source: '["implicitGlobal"]' },
+      stringify: { selections: [Array], source: '["implicitGlobal"]' },
+      format: { selections: [Array], source: '["implicitGlobal"]' }
+    }
+  },
+  "[1]": {
+    varCount: 3,
+    varInfo: {
+      self: { number: 1, selections: [Array], source: "[1]" },
+      thing: { number: 2, selections: [Array], source: "[1]" },
+      each: { number: 3, selections: [Array], source: "[1]" }
+    }
+  },
+  "[2]": {
+    varCount: 11,
+    varInfo: {
+      df: { number: 1, selections: [Array], source: "[2]" },
+      path: { number: 2, selections: [Array], source: "[2]" },
+      limit: { number: 3, selections: [Array], source: "[2]" },
+      first_serveral_lines: { number: 4, selections: [Array], source: "[2]" },
+      open: { selections: [Array], source: '["implicitGlobal"]' },
+      the_file: { number: 5, selections: [Array], source: "[2]" },
+      index: { number: 6, selections: [Array], source: "[2]" },
+      line: { number: 7, selections: [Array], source: "[2]" },
+      enumerate: { selections: [Array], source: '["implicitGlobal"]' },
+      folders: { number: 8, selections: [Array], source: "[2]" },
+      name: { number: 9, selections: [Array], source: "[2]" },
+      extension: { number: 10, selections: [Array], source: "[2]" },
+      FS: { selections: [Array], source: '["implicitGlobal"]' },
+      Exception: { selections: [Array], source: '["implicitGlobal"]' },
+      error: { number: 11, selections: [Array], source: "[2]" },
+      print: { selections: [Array], source: '["implicitGlobal"]' }
+    }
+  },
+  "[3]": {
+    varCount: 1,
+    varInfo: {
+      l_args: { number: 1, selections: [Array], source: "[3]" },
+      isinstance: { selections: [Array], source: '["implicitGlobal"]' },
+      float: { selections: [Array], source: '["implicitGlobal"]' }
+    }
+  },
+  "[4]": {
+    varCount: 4,
+    varInfo: {
+      args: { number: 1, selections: [Array], source: "[4]" },
+      some_var: { selections: [Array], source: '["implicitGlobal"]' },
+      size: { number: 2, selections: [Array], source: "[4]" },
+      thing: { number: 3, selections: [Array], source: "[4]" },
+      float: { selections: [Array], source: '["implicitGlobal"]' },
+      format: { selections: [Array], source: '["implicitGlobal"]' },
+      print: { selections: [Array], source: '["implicitGlobal"]' },
+      inner: { number: 4, selections: [Array], source: "[4]" }
+    }
+  },
+  "[4,1]": {
+    varCount: 0,
+    varInfo: { size: { number: 2, selections: [Array], source: "[4]" } }
+  }
+}
+
+import ez_yaml
+from sklearn.metrics import make_scorer
+
+var_1 = make_scorer(equal_accuracy, greater_is_better=True)
+
+
+class var_2:
+    var_3 = 10
+
+    def __init__(var_1_1, var_1_2):
+        var_1_2 = [10 for var_1_3 in (1, 2, 3)]
+
+
+def var_4(var_2_1, var_2_2, var_2_3=200):
+    var_2_1.to_csv(var_2_2, sep="\t", encoding="utf-8", index=False)
+    try:
+        var_2_4 = ""
+        with open(var_2_2, "r") as var_2_5:
+            for var_2_6, var_2_7 in enumerate(var_2_5):
+                var_2_4 += var_2_7
+                if var_2_6 > var_2_3:
+                    break
+        *var_2_8, var_2_9, var_2_10 = FS.path_pieces(var_2_2)
+        with open(FS.join(*var_2_8, var_2_9 + ".snippet" + var_2_10), "w") as var_2_5:
+            var_2_5.write(var_2_4)
+    except Exception as var_2_11:
+        print(f"error creating snippet: {var_2_11}")
+
+
+#
+# formatting of floats
+#
+from slick_siphon import siphon
+
+
+@siphon(when=lambda *var_3_1: isinstance(var_3_1[0], float), is_true_for=stringify)
+def stringify(*var_4_1):
+    global some_var
+    var_4_2 = 0
+    var_4_3 = 11
+    # smallest decimal possible without loosing accuracy
+    while float(format(var_4_1[0], f".{var_4_2}f")) != var_4_1[0]:
+        var_4_2 += 1
+
+    print("hi")
+    var_4_3.thingy = 10
+
+    def var_4_4():
+        nonlocal var_4_2
+        return var_4_2
+
+    return format(var_4_1[0], f".{var_4_2}f")
+
+
+# TODO: walrus
+

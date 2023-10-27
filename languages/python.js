@@ -62,12 +62,16 @@ export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerat
     const addSelection = (
         useGloballyUniqueNames ? 
                 (specificVarInfo, varSelection)=>{
-                    const varId = [...JSON.parse(specificVarInfo.source), specificVarInfo.number ].join(`_`)
-                    allSelections.push([...varSelection, varId])
+                    if (specificVarInfo.source != `["implicitGlobal"]`) {
+                        const varId = [...JSON.parse(specificVarInfo.source), specificVarInfo.number ].join(`_`)
+                        allSelections.push([...varSelection, varId])
+                    }
                 }
             :
                 (specificVarInfo, varSelection)=>{
-                    allSelections.push([...varSelection, specificVarInfo.number ])
+                    if (specificVarInfo.source != `["implicitGlobal"]`) {
+                        allSelections.push([...varSelection, specificVarInfo.number ])
+                    }
                 }
     )
             
