@@ -1,0 +1,208 @@
+<module>
+    <expression_statement>
+        <assignment>
+            <identifier text="a" />
+            <= text="=" />
+            <integer text="10" />
+        </assignment>
+    </expression_statement>
+    <expression_statement>
+        <assignment>
+            <identifier text="b" />
+            <= text="=" />
+            <integer text="99" />
+        </assignment>
+    </expression_statement>
+    <expression_statement>
+        <assignment>
+            <identifier text="c" />
+            <= text="=" />
+            <integer text="100" />
+        </assignment>
+    </expression_statement>
+    <expression_statement>
+        <assignment>
+            <identifier text="d" />
+            <= text="=" />
+            <integer text="33" />
+        </assignment>
+    </expression_statement>
+    <function_definition>
+        <def text="def" />
+        <identifier text="some_function" />
+        <parameters>
+            <( text="(" />
+            <list_splat_pattern>
+                <* text="*" />
+                <identifier text="args" />
+            </list_splat_pattern>
+            <) text=")" />
+        </parameters>
+        <: text=":" />
+        <block>
+            <global_statement>
+                <global text="global" />
+                <identifier text="a" />
+            </global_statement>
+            <expression_statement>
+                <assignment>
+                    <identifier text="b" />
+                    <= text="=" />
+                    <integer text="0" />
+                </assignment>
+            </expression_statement>
+            <comment text="# not the same as the outer b" />
+            <for_statement>
+                <for text="for" />
+                <identifier text="each" />
+                <in text="in" />
+                <call>
+                    <identifier text="range" />
+                    <argument_list>
+                        <( text="(" />
+                        <identifier text="c" />
+                        <) text=")" />
+                    </argument_list>
+                </call>
+                <: text=":" />
+                <block>
+                    <expression_statement>
+                        <augmented_assignment>
+                            <identifier text="b" />
+                            <+= text="+=" />
+                            <integer text="1" />
+                        </augmented_assignment>
+                    </expression_statement>
+                </block>
+            </for_statement>
+            <expression_statement>
+                <augmented_assignment>
+                    <identifier text="a" />
+                    <+= text="+=" />
+                    <integer text="1" />
+                </augmented_assignment>
+            </expression_statement>
+            <comment text="# is the same as the outer a" />
+            <function_definition>
+                <def text="def" />
+                <identifier text="inner" />
+                <parameters>
+                    <( text="(" />
+                    <) text=")" />
+                </parameters>
+                <: text=":" />
+                <block>
+                    <nonlocal_statement>
+                        <nonlocal text="nonlocal" />
+                        <identifier text="d" />
+                    </nonlocal_statement>
+                    <expression_statement>
+                        <augmented_assignment>
+                            <identifier text="d" />
+                            <+= text="+=" />
+                            <integer text="1" />
+                        </augmented_assignment>
+                    </expression_statement>
+                    <comment text="# is the some_function d not the global d" />
+                    <expression_statement>
+                        <assignment>
+                            <identifier text="c" />
+                            <= text="=" />
+                            <integer text="10" />
+                        </assignment>
+                    </expression_statement>
+                    <expression_statement>
+                        <call>
+                            <identifier text="print" />
+                            <argument_list>
+                                <( text="(" />
+                                <identifier text="c" />
+                                <) text=")" />
+                            </argument_list>
+                        </call>
+                    </expression_statement>
+                    <comment text="# local c" />
+                    <return_statement>
+                        <return text="return" />
+                        <identifier text="b" />
+                    </return_statement>
+                </block>
+            </function_definition>
+            <comment text="# is the some_function b not the global b" />
+            <expression_statement>
+                <call>
+                    <identifier text="inner" />
+                    <argument_list>
+                        <( text="(" />
+                        <) text=")" />
+                    </argument_list>
+                </call>
+            </expression_statement>
+            <return_statement>
+                <return text="return" />
+                <identifier text="d" />
+            </return_statement>
+        </block>
+    </function_definition>
+</module>
+stack is: {
+  "[]": {
+    varCount: 5,
+    varInfo: {
+      a: { number: 1, selections: [Array], source: "[]" },
+      b: { number: 2, selections: [Array], source: "[]" },
+      c: { number: 3, selections: [Array], source: "[]" },
+      d: { number: 4, selections: [Array], source: "[]" },
+      some_function: { number: 5, selections: [Array], source: "[]" },
+      range: { selections: [Array], source: '["implicitGlobal"]' },
+      print: { selections: [Array], source: '["implicitGlobal"]' }
+    }
+  },
+  "[1]": {
+    varCount: 4,
+    varInfo: {
+      args: { number: 1, selections: [Array], source: "[1]" },
+      a: { number: 1, selections: [Array], source: "[]" },
+      b: { number: 2, selections: [Array], source: "[1]" },
+      each: { number: 3, selections: [Array], source: "[1]" },
+      range: { selections: [Array], source: '["implicitGlobal"]' },
+      c: { number: 3, selections: [Array], source: "[]" },
+      inner: { number: 4, selections: [Array], source: "[1]" },
+      d: { number: 4, selections: [Array], source: "[]" }
+    }
+  },
+  "[1,1]": {
+    varCount: 1,
+    varInfo: {
+      d: { number: 4, selections: [Array], source: "[]" },
+      c: { number: 1, selections: [Array], source: "[1,1]" },
+      print: { selections: [Array], source: '["implicitGlobal"]' },
+      b: { number: 2, selections: [Array], source: "[1]" }
+    }
+  }
+}
+
+var_1 = 10
+var_2 = 99
+var_3 = 100
+var_4 = 33
+
+def var_5(*var_1_1):
+    global var_1
+    var_1_2 = 0 # not the same as the outer b
+    for var_1_3 in range(var_3):
+        var_1_2 += 1
+    
+    var_1 += 1 # is the same as the outer a
+    
+    def var_1_4():
+        nonlocal var_4
+        
+        var_4 += 1 # is the some_function d not the global d
+        var_1_1_1 = 10
+        print(var_1_1_1) # local c
+        return var_1_2 # is the some_function b not the global b
+    
+    var_1_4()
+    return var_4
+

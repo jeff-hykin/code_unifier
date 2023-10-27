@@ -16,7 +16,7 @@ d = 33
 def some_function(*args):
     global a
     b = 0 # not the same as the outer b
-    for each in range(c)
+    for each in range(c):
         b += 1
     
     a += 1 # is the same as the outer a

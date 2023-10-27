@@ -5,8 +5,7 @@ import python from "https://deno.land/x/common_tree_sitter_languages@1.0.0.3/mai
 export const parser = await parserFromWasm(python)
 
 const langName = "python"
-let debugging = true
-export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerator=(id)=>`var_${id}` })=> {
+export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerator=(id)=>`var_${id}`, debugging=false })=> {
     const stack = new StackManager({
         defaultInfoCreator: ()=>({
             varCount: 0,
