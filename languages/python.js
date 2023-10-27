@@ -6,6 +6,45 @@ export const parser = await parserFromWasm(python)
 export const defaultParser = parser
 
 const langName = "python"
+export const removeComments = ({ code, debugging=false, parser=defaultParser })=> {
+    const allSelections = []
+    const tree = parser.parse(code)
+    let showedWarning = false
+    // in loop
+    let skipUntilClosing
+    for (const [ parents, node, direction ] of tree.rootNode.traverse()) {
+        if (parents.length == 0) {
+            continue
+        }
+        if (direction == "<-") {
+            continue
+        }
+        const {type} = node
+        const parent = parents[0]
+        const realParents = parents.filter(each=>each.type!="block"&&each.type!="pattern_list"&&each.type!="list_splat_pattern")
+        const realParent = (realParents.length && realParents[0])||{}
+
+        if (type == "comment") {
+            allSelections.push([ node.startIndex, node.endIndex-node.startIndex ])
+            continue
+        }
+
+        // heredoc's and random single-expression strings
+        if (type == "string" && parent.type == "expression_statement" && parent.children.length == 1) {
+            allSelections.push([ node.startIndex, node.endIndex-node.startIndex ])
+            continue
+        }
+    }
+
+    const newCode = replaceSequence({
+        code,
+        selections: allSelections,
+        replacer: ()=>``,
+    })
+
+    return newCode
+}
+
 export const autoRenameVars = ({ code, useGloballyUniqueNames=false, nameGenerator=(id)=>`var_${id}`, debugging=false, parser=defaultParser })=> {
     const stack = new StackManager({
         defaultInfoCreator: ()=>({

@@ -159,70 +159,30 @@
         </block>
     </function_definition>
 </module>
-stack is: {
-  "[]": {
-    varCount: 5,
-    varInfo: {
-      a: { number: 1, selections: [Array], source: "[]" },
-      b: { number: 2, selections: [Array], source: "[]" },
-      c: { number: 3, selections: [Array], source: "[]" },
-      d: { number: 4, selections: [Array], source: "[]" },
-      some_function: { number: 5, selections: [Array], source: "[]" },
-      range: { selections: [Array], source: '["implicitGlobal"]' },
-      print: { selections: [Array], source: '["implicitGlobal"]' }
-    }
-  },
-  "[1]": {
-    varCount: 4,
-    varInfo: {
-      args: { number: 1, selections: [Array], source: "[1]" },
-      a: { number: 1, selections: [Array], source: "[]" },
-      b: { number: 2, selections: [Array], source: "[1]" },
-      each: { number: 3, selections: [Array], source: "[1]" },
-      range: { selections: [Array], source: '["implicitGlobal"]' },
-      c: { number: 3, selections: [Array], source: "[]" },
-      inner: { number: 4, selections: [Array], source: "[1]" },
-      d: { number: 4, selections: [Array], source: "[]" }
-    }
-  },
-  "[1,1]": {
-    varCount: 1,
-    varInfo: {
-      d: { number: 4, selections: [Array], source: "[]" },
-      c: { number: 1, selections: [Array], source: "[1,1]" },
-      print: { selections: [Array], source: '["implicitGlobal"]' },
-      b: { number: 2, selections: [Array], source: "[1]" }
-    }
-  }
-}
 
-var_1 = 10
-var_2 = 99
-var_3 = 100
-var_4 = 33
+a = 10
+b = 99
+c = 100
+d = 33
 
-def var_5(*var_1_1):
-    """
-        heredoc
-    """
-    global var_1
-    var_1_2 = 0 # not the same as the outer b
-    for var_1_3 in range(var_3):
-        var_1_2 += 1
+def some_function(*args):
     
-    """
-        random string
-    """
-    var_1 += 1 # is the same as the outer a
+    global a
+    b = 0 
+    for each in range(c):
+        b += 1
     
-    def var_1_4():
-        nonlocal var_4
+    
+    a += 1 
+    
+    def inner():
+        nonlocal d
         
-        var_4 += 1 # is the some_function d not the global d
-        var_1_1_1 = 10
-        print(var_1_1_1) # local c
-        return var_1_2 # is the some_function b not the global b
+        d += 1 
+        c = 10
+        print(c) 
+        return b 
     
-    var_1_4()
-    return var_4
+    inner()
+    return d
 
