@@ -24,7 +24,7 @@ def some_function(*args):
     def inner():
         nonlocal d
         
-        d += 1 # is the some_function d not the global d
+        d += 1 # is the some_function d which happens to be the global d
         c = 10
         print(c) # local c
         return b # is the some_function b not the global b
@@ -60,7 +60,7 @@ def var_5(*var_1_1):
     def var_1_4():
         nonlocal var_4
         
-        var_4 += 1 # is the some_function d not the global d
+        var_4 += 1 # is the some_function d which happens to be the global d
         var_1_1_1 = 10
         print(var_1_1_1) # local c
         return var_1_2 # is the some_function b not the global b
