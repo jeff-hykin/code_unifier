@@ -43,7 +43,7 @@ console.log(newCode)
 
 The output will look like:
 
-```
+```py
 var_1 = 10
 var_2 = 99
 var_3 = 100
